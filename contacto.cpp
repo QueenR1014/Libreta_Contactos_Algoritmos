@@ -22,7 +22,7 @@ class contacto{
     public:
 
         contacto(){
-            
+            //test
         }
 
         void set_nombre(string n ){
