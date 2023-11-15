@@ -19,6 +19,7 @@ class contacto{
         int telefono;
         map<string, string> redes = crear_redes();
         string direccion;
+        int ico;
         
     public:
 
@@ -57,6 +58,15 @@ class contacto{
         string get_direcc(){
             return direccion;
         }
+
+        void set_ico(int i){
+            ico = i;
+        } 
+
+        int get_ico(){
+            return ico;
+        }
+        
         string print_map(){
 
             string redes_string;
@@ -71,6 +81,15 @@ class contacto{
             return "Nombre: " + nombre + " Teléfono: " + to_string(telefono) +  " Dirección: " + direccion;
         }
 
+        friend std::ostream& operator<<(std::ostream& os, contacto& b){
+            return os << b.print();
+        }
+};  
 
-        
-};
+
+int main(){
+    contacto x;
+
+    x.set_nombre("Juan");
+    cout<<x<<endl;
+}
