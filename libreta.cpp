@@ -1,12 +1,8 @@
+#include "contacto.cpp"
+#include <iostream>
+#include <vector>
 
-
-
-
-
-//////////////////////////////////////////////////////////////////////////////
-
-
-
+using namespace std;
 
 class LibretaContactos {
 private:
@@ -54,8 +50,8 @@ public:
 ////////////////////////
     void mostrarContactos() const {
         for (const auto& contacto : contactos) {
-            cout << contacto << endl;
-            cout << "Redes:\n" << contacto.print_map() << endl;
+            cout<< contacto << endl;
+            cout<< "Redes:\n" << contacto.print_map() << endl;
         }
     }
 

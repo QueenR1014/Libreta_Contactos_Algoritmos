@@ -13,7 +13,7 @@ map<string,string> crear_redes(){
     return redes;
 }
 
-class contacto{
+class Contacto{
     private:
         string nombre;
         int telefono;
@@ -23,7 +23,7 @@ class contacto{
         
     public:
 
-        contacto(){
+        Contacto(){
             //test
         }
 
@@ -81,15 +81,15 @@ class contacto{
             return "Nombre: " + nombre + " Teléfono: " + to_string(telefono) +  " Dirección: " + direccion;
         }
 
-        friend std::ostream& operator<<(std::ostream& os, contacto& b){
+        friend std::ostream& operator<<(std::ostream& os, Contacto& b){
             return os << b.print();
         }
+
+
+        bool operator<(Contacto a){
+            return nombre[0] < a.get_nombre()[0];
+        }
+    
 };  
 
 
-int main(){
-    contacto x;
-
-    x.set_nombre("Juan");
-    cout<<x<<endl;
-}
