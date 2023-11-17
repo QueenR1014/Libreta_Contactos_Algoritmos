@@ -20,13 +20,33 @@ class Contacto{
         map<string, string> redes = crear_redes();
         string direccion;
         int ico;
-        
-    public:
 
+    public:
+        int recurrence;
         Contacto(){
             //test
+            recurrence = 0;
         }
-
+        
+        
+        Contacto(string n, int t, string di, int i){
+            recurrence = 0;
+            nombre = nombre;
+            telefono = t;
+            direccion = di;
+            ico = i;
+        }
+        
+        Contacto(string n){
+            Contacto(n,0,"",0);
+        }
+        
+        Contacto(string n , int t){
+            Contacto(n,t,"",0);
+        }
+        
+        //Methods
+        
         void set_nombre(string n){
             nombre = n;
         }
