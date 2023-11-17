@@ -85,11 +85,16 @@ class Contacto{
             return os << b.print();
         }
 
+        friend std::ostream& operator<<(std::ostream& os, Contacto* b){
+            return os << b->print();
+        }
 
         bool operator<(Contacto a){
             return nombre[0] < a.get_nombre()[0];
         }
+
+        bool operator>(Contacto a){
+            return nombre[0] > a.get_nombre()[0];
+        }
     
 };  
-
-
