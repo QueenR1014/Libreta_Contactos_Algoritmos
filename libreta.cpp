@@ -3,8 +3,11 @@
 #include <vector>
 #include <iostream>
 #include <map>
+//métodos de búsqueda y ordenamiento
 #include <algorithm>
 #include <fstream>
+//Manejo de strings
+#include <cctype>
 using namespace std;
 
 class LibretaContactos {
@@ -14,7 +17,7 @@ private:
 public:
 
 
-    vector<Contacto> insercionOrdenada(Contacto nuevo){
+    /*vector<Contacto> insercionOrdenada(Contacto nuevo){
 
         //Vector displacement acording to name
         bool inserted = false;
@@ -32,14 +35,14 @@ public:
         
         contactos = temp;
         return temp;
-    }
+    }*/
 ///////////////
     void agregarContacto(const Contacto& nuevoContacto) {
         contactos.push_back(nuevoContacto);
 
-        /*sort(contactos.begin(), contactos.end(), [](const Contacto& a, const Contacto& b) {
-            return a.get_nombre() < b.get_nombre();
-        });*/
+        sort(contactos.begin(), contactos.end(), []( Contacto& a,  Contacto& b) {
+            return a < b;
+        });
     }
 
 
@@ -103,5 +106,35 @@ public:
 
         archivo.close();
     }
+
+
+    void ordenarContactos(){
+        sort(contactos.begin(), contactos.end(), []( Contacto& a,  Contacto& b) {
+            return a < b;
+        });
+    }
+    void importarContactos(vector<Contacto> importado){
+        contactos = importado;
+        ordenarContactos();
+    }
+
+    Contacto busquedaBinaria(string nombre){
+        bool found = false;
+        int max = contactos.size() - 1;
+        int min = 0;
+        while(!found){
+
+            Contacto mitad = contactos[(max + min) / 2];
+
+            if(nombre > mitad.get_nombre()){
+                min = (max + min)/ 2 ;
+            }else if(nombre < mitad.get_nombre()){
+                max = (max + min)/ 2;
+            }else if(nombre == mitad.get_nombre()){
+                return mitad;
+            }
+        }
+    }
+
 };
 

@@ -1,0 +1,7 @@
+Nombre: Juan Teléfono: 123456789 Dirección: Calle 123
+Redes:
+Correo: juan@example.com 
+Instagram: @juan_instagram 
+LinkedIn:  
+X:  
+

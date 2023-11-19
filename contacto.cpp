@@ -39,6 +39,7 @@ class Contacto{
         
         Contacto(string n){
             Contacto(n,0,"",0);
+            //test
         }
         
         Contacto(string n , int t){
