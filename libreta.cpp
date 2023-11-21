@@ -36,42 +36,54 @@ public:
         contactos = temp;
         return temp;
     }*/
+
+
+
 ///////////////
-    void agregarContacto(const Contacto& nuevoContacto) {
+
+    void AgregarContacto(const Contacto& nuevoContacto) {
         contactos.push_back(nuevoContacto);
 
-        sort(contactos.begin(), contactos.end(), []( Contacto& a,  Contacto& b) {
+        sort(contactos.begin(), contactos.end(), []( Contacto& a,  Contacto& b) { //Al añadir un contacto, automáticamente se ordena alfabéticamente
             return a < b;
         });
     }
 
 
 ////////////////////
-    void eliminarContacto(const string& nombre) {
+
+    void EliminarContacto(const string& nombre) {
         auto it = remove_if(contactos.begin(), contactos.end(), [nombre](Contacto& contacto) { return contacto.get_nombre() == nombre; });
+
+        //Función remove, una vez encuentre el nombre, desde el rango begin hasta el end, lo elimina.
 
         contactos.erase(it, contactos.end());
     }
 
 
 //////////////////
-    void buscarContacto(const string& nombre) {
+
+    void BuscarContacto(const string& nombre) {
         auto it = find_if(contactos.begin(), contactos.end(),
                           [nombre](Contacto& contacto) { return contacto.get_nombre() == nombre; });
 
+        /* Función find if, de la misma manera que el remove, desde el rango begin hasta en, va sacando los nombre de cada contacto y los iguala al 
+        nombre dado */
+
         if (it != contactos.end()) {
             cout << *it << endl; 
-            cout << "Redes:\n" << it->print_map() << endl;
+            cout << "Redes:\n" << it->print_map() << endl;  // si lo encuentra, se imprimen sus redes
         } else {
-            cout << "Contacto no encontrado." << endl;
+            cout << "Contacto no encontrado." << endl; // caso en el que no
         }
     }
 
 
 
 ////////////////////////
-    void mostrarContactos() const {
-        for (Contacto c : contactos) {
+
+    void MostrarContactos() const {
+        for (Contacto c : contactos) { //For en el que imprime contacto por contacto
             cout<<c<< endl;
             cout<< "Redes:\n" << c.print_map() << endl;
         }
@@ -80,14 +92,19 @@ public:
 
 
 //////////////////////////
-    void mostrarCantidadContactos() const {
+
+    void MostrarCantidadContactos() const {
         cout << "Total de contactos: " << contactos.size() << endl;
     }
 
-    void mostrarContactosPorLetra(char letra) {
+
+
+/////////////////////////
+
+    void MostrarContactosPorLetra(char letra) {
         for (auto& contacto : contactos) {
-            if (tolower(contacto.get_nombre()[0]) == tolower(letra)) {
-                cout << contacto << endl;
+            if (tolower(contacto.get_nombre()[0]) == tolower(letra)) {  // dentro de contactos, se tomas todos los contactos cuya primera letra (convertida a 
+                cout << contacto << endl;                               // minúscula) sean igual a la letra dada y se imprimen.
                 cout << "Redes:\n" << contacto.print_map() << endl;
             }
         }
@@ -96,8 +113,8 @@ public:
 
 
 ////////////////////////////////////////
-     void realizarCopiaSeguridad(const string& nombreArchivo){
-        ofstream archivo(nombreArchivo);
+     void RealizarCopiaSeguridad(const string& nombreArchivo){
+        ofstream archivo(nombreArchivo);                             
 
         for (auto& contacto : contactos) {
             archivo << contacto << endl;
@@ -108,17 +125,17 @@ public:
     }
 
 
-    void ordenarContactos(){
+    void OrdenarContactos(){
         sort(contactos.begin(), contactos.end(), []( Contacto& a,  Contacto& b) {
             return a < b;
         });
     }
-    void importarContactos(vector<Contacto> importado){
+    void ImportarContactos(vector<Contacto> importado){
         contactos = importado;
         ordenarContactos();
     }
 
-    Contacto busquedaBinaria(string nombre){
+    Contacto BusquedaBinaria(string nombre){
         bool found = false;
         int max = contactos.size() - 1;
         int min = 0;
