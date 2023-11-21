@@ -2,7 +2,7 @@
 #include <map>
 #include <string>
 using namespace std;
-
+//crear un mapa para almacenar las redes del contacto
 map<string,string> crear_redes(){
     map<string, string> redes;
     redes["Instagram"] = "";
@@ -15,6 +15,7 @@ map<string,string> crear_redes(){
 
 class Contacto{
     private:
+//declaracion de variables
         string nombre;
         int telefono;
         map<string, string> redes = crear_redes();
@@ -23,6 +24,7 @@ class Contacto{
 
     public:
         int recurrence;
+//constructores de la clase
         Contacto(){
             //test
             recurrence = 0;
@@ -47,7 +49,7 @@ class Contacto{
         }
         
         //Methods
-        
+        // set's and get's
         void set_nombre(string n){
             nombre = n;
         }
@@ -87,7 +89,7 @@ class Contacto{
         int get_ico(){
             return ico;
         }
-        
+        // Prints para mostrar la informacion amacenada en la clase segun la estructura
         string print_map(){
 
             string redes_string;
@@ -105,7 +107,7 @@ class Contacto{
         friend std::ostream& operator<<(std::ostream& os, Contacto& b){
             return os << b.print();
         }
-
+        //sobrecarga de los operadores principales para las operaciones basicas sea un cout o una comparacion para los sort's
         friend std::ostream& operator<<(std::ostream& os, Contacto* b){
             return os << b->print();
         }
