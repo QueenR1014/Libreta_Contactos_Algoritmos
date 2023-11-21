@@ -141,11 +141,26 @@ public:
         ordenarContactos();
     }
 
-
-
-
-
 /////////////////////////////////////////////////////
+
+    vector RevisarFrecuencia(vector<Contacto> contactos){
+        vector<Contactos> MasFrecuentes;
+        for(int i = 0; i < contactos.size(); i++){
+            f = contacto.get_frecuencia();
+            if(f > 3){
+                MasFrecuentes.push_back(contacto);
+            }
+        }
+        sort(contactos.begin(), contactos.end(), []( Contacto& a,  Contacto& b) {
+            return a.get_frecuencia() < b.get_frecuencia();
+        });
+        return contactos
+    }
+
+
+
+
+////////////////////////////////////////////////////
     Contacto BusquedaBinaria(string nombre){
         bool found = false;
         int max = contactos.size() - 1;
