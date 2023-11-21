@@ -193,11 +193,11 @@ int main() {
 
 
     Contacto contacto1;
-    contacto1.set_nombre("Juan");
-    contacto1.set_telf(123456789);
+    contacto1.set_nombre("Juan Reina");
+    contacto1.set_telf(322 870-3929);
     contacto1.set_direcc("Calle 123");
-    contacto1.set_red("Instagram", "@juan_instagram");
-    contacto1.set_red("Correo", "juan@example.com");
+    contacto1.set_red("Instagram", "@juanhdgamer");
+    contacto1.set_red("Correo", "juan@urosario.co");
     contacto1.set_ico(1);
 
     Contacto contacto2;
@@ -207,30 +207,30 @@ int main() {
     contacto2.set_red("LinkedIn", "linkedin.com/in/ana");
     contacto2.set_ico(2);
 
-    libreta.agregarContacto(contacto1);
-    libreta.agregarContacto(contacto2);
+    libreta.AgregarContacto(contacto1);
+    libreta.AgregarContacto(contacto2);
 
     cout << "Lista de contactos:" << endl;
-    libreta.mostrarContactos();
+    libreta.MostrarContactos();
 
-    libreta.mostrarCantidadContactos();
+    libreta.MostrarCantidadContactos();
 
     cout << "Buscar contacto por nombre:" << endl;
-    libreta.buscarContacto("Juan");
+    libreta.BuscarContacto("Juan");
 
-    libreta.eliminarContacto("Ana");
+    libreta.EliminarContacto("Ana");
 
     cout << "Lista de contactos después de eliminar a Ana:" << endl;
-    libreta.mostrarContactos();
+    libreta.MostrarContactos();
 
 
-    libreta.mostrarCantidadContactos();
+    libreta.MostrarCantidadContactos();
 
 
     cout << "Contactos cuyos nombres comienzan con 'J':" << endl;
-    libreta.mostrarContactosPorLetra('J');
+    libreta.MostrarContactosPorLetra('J');
 
-    libreta.realizarCopiaSeguridad("copia_seguridad.txt");
+    libreta.RealizarCopiaSeguridad("copia_seguridad.txt");
 
     return 0;
 }
