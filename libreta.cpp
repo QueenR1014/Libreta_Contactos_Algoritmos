@@ -5,6 +5,7 @@
 #include <map>
 //métodos de búsqueda y ordenamiento
 #include <algorithm>
+//método de creación de ficheros en un programa
 #include <fstream>
 //Manejo de strings
 #include <cctype>
@@ -114,40 +115,49 @@ public:
 
 ////////////////////////////////////////
      void RealizarCopiaSeguridad(const string& nombreArchivo){
-        ofstream archivo(nombreArchivo);                             
+        ofstream archivo(nombreArchivo);                             //usando file stream, se crea la copia de seguridad como archivo .txt
 
         for (auto& contacto : contactos) {
             archivo << contacto << endl;
-            archivo << "Redes:\n" << contacto.print_map() << endl;
+            archivo << "Redes:\n" << contacto.print_map() << endl;    // donde se imprimen todos los contactos existentes
         }
 
-        archivo.close();
+        archivo.close();           // se cierra el archivo
     }
 
+
+///////////////////////////////
 
     void OrdenarContactos(){
         sort(contactos.begin(), contactos.end(), []( Contacto& a,  Contacto& b) {
             return a < b;
         });
     }
+
+
+//////////////////////////////////////////////////
     void ImportarContactos(vector<Contacto> importado){
         contactos = importado;
         ordenarContactos();
     }
 
+
+
+
+
+/////////////////////////////////////////////////////
     Contacto BusquedaBinaria(string nombre){
         bool found = false;
         int max = contactos.size() - 1;
         int min = 0;
         while(!found){
 
-            Contacto mitad = contactos[(max + min) / 2];
 
-            if(nombre > mitad.get_nombre()){
+            if(nombre > mitad.get_nombre()){         //Se ajusta el límite inferior (min) para buscar en la mitad derecha de la lista
                 min = (max + min)/ 2 ;
-            }else if(nombre < mitad.get_nombre()){
+            }else if(nombre < mitad.get_nombre()){         //Se ajusta el límite superior (max) para buscar en la mitad izquierda de la lista.
                 max = (max + min)/ 2;
-            }else if(nombre == mitad.get_nombre()){
+            }else if(nombre == mitad.get_nombre()){        //Se ha encontrado el contacto y se devuelve ese contacto.
                 return mitad;
             }
         }
