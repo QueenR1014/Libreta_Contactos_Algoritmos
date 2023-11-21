@@ -218,9 +218,9 @@ int main() {
     cout << "Buscar contacto por nombre:" << endl;
     libreta.BuscarContacto("Juan Reina");
 
-    libreta.EliminarContacto("Ana Laura");
+    libreta.EliminarContacto("Laura");
 
-    cout << "Lista de contactos después de eliminar a Ana:" << endl;
+    cout << "Lista de contactos después de eliminar a Laura:" << endl;
     libreta.MostrarContactos();
 
 
