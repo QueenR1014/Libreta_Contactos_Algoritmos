@@ -201,10 +201,10 @@ int main() {
     contacto1.set_ico(1);
 
     Contacto contacto2;
-    contacto2.set_nombre("Ana");
-    contacto2.set_telf(987654321);
+    contacto2.set_nombre("Laura");
+    contacto2.set_telf(318 410-0100);
     contacto2.set_direcc("Avenida 456");
-    contacto2.set_red("LinkedIn", "linkedin.com/in/ana");
+    contacto2.set_red("LinkedIn", "linkedin.com/in/Laura");
     contacto2.set_ico(2);
 
     libreta.AgregarContacto(contacto1);
@@ -216,9 +216,9 @@ int main() {
     libreta.MostrarCantidadContactos();
 
     cout << "Buscar contacto por nombre:" << endl;
-    libreta.BuscarContacto("Juan");
+    libreta.BuscarContacto("Juan Reina");
 
-    libreta.EliminarContacto("Ana");
+    libreta.EliminarContacto("Ana Laura");
 
     cout << "Lista de contactos después de eliminar a Ana:" << endl;
     libreta.MostrarContactos();
