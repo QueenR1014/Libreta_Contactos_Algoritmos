@@ -21,9 +21,9 @@ class Contacto{
         map<string, string> redes = crear_redes();
         string direccion;
         int ico;
-
-    public:
         int recurrence;
+    public:
+        
 //constructores de la clase
         Contacto(){
             //test
@@ -88,6 +88,14 @@ class Contacto{
 
         int get_ico(){
             return ico;
+        }
+
+        int get_frecuencia(){
+            return recurrence;
+        }
+
+        void set_frecuencia(int r){
+            recurrence = r;
         }
         // Prints para mostrar la informacion amacenada en la clase segun la estructura
         string print_map(){
