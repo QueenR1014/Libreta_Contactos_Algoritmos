@@ -151,10 +151,10 @@ public:
                 MasFrecuentes.push_back(contacto);
             }
         }
-        sort(contactos.begin(), contactos.end(), []( Contacto& a,  Contacto& b) {
+        sort(MasFrecuentes.begin(), MasFrecuentes.end(), []( Contacto& a,  Contacto& b) {
             return a.get_frecuencia() < b.get_frecuencia();
         });
-        return contactos
+        return MasFrecuentes
     }
 
 
