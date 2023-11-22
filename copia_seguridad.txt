@@ -1,7 +1,7 @@
-Nombre: Juan Teléfono: 123456789 Dirección: Calle 123
+Nombre: Juan Reina Teléfono: -1066263367 Dirección: Calle 123
 Redes:
-Correo: juan@example.com 
-Instagram: @juan_instagram 
+Correo: juan@urosario.co 
+Instagram: @juanhdgamer 
 LinkedIn:  
 X:  
 

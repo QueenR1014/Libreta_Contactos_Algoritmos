@@ -138,23 +138,34 @@ public:
 //////////////////////////////////////////////////
     void ImportarContactos(vector<Contacto> importado){
         contactos = importado;
-        ordenarContactos();
+        OrdenarContactos();
     }
 
 /////////////////////////////////////////////////////
 
-    vector RevisarFrecuencia(vector<Contacto> contactos){
-        vector<Contactos> MasFrecuentes;
+    vector<Contacto> RevisarFrecuencia(){
+        vector<Contacto> MasFrecuentes;
+        int frecuence;
+        if(MasFrecuentes.size() < 10){
+            frecuence = 5;
+        }else if(MasFrecuentes.size() >= 10){
+            frecuence = 0;
+            for(int i = 0; i < MasFrecuentes.size(); i++){
+                frecuence += MasFrecuentes[i].get_frecuencia();
+            }
+
+            frecuence = frecuence / MasFrecuentes.size();
+        }
         for(int i = 0; i < contactos.size(); i++){
-            f = contacto.get_frecuencia();
-            if(f > 3){
-                MasFrecuentes.push_back(contacto);
+
+            if(contactos[i].get_frecuencia() > frecuence){
+                MasFrecuentes.push_back(contactos[i]);
             }
         }
         sort(MasFrecuentes.begin(), MasFrecuentes.end(), []( Contacto& a,  Contacto& b) {
-            return a.get_frecuencia() < b.get_frecuencia();
+            return a < b;
         });
-        return MasFrecuentes
+        return MasFrecuentes;
     }
 
 
@@ -165,15 +176,16 @@ public:
         bool found = false;
         int max = contactos.size() - 1;
         int min = 0;
+        int mitad = (max + min)/2;
         while(!found){
 
 
-            if(nombre > mitad.get_nombre()){         //Se ajusta el límite inferior (min) para buscar en la mitad derecha de la lista
+            if(nombre > contactos[mitad].get_nombre()){         //Se ajusta el límite inferior (min) para buscar en la mitad derecha de la lista
                 min = (max + min)/ 2 ;
-            }else if(nombre < mitad.get_nombre()){         //Se ajusta el límite superior (max) para buscar en la mitad izquierda de la lista.
+            }else if(nombre < contactos[mitad].get_nombre()){         //Se ajusta el límite superior (max) para buscar en la mitad izquierda de la lista.
                 max = (max + min)/ 2;
-            }else if(nombre == mitad.get_nombre()){        //Se ha encontrado el contacto y se devuelve ese contacto.
-                return mitad;
+            }else if(nombre == contactos[mitad].get_nombre()){        //Se ha encontrado el contacto y se devuelve ese contacto.
+                return contactos[mitad];
             }
         }
     }

@@ -189,12 +189,13 @@ public:
 */
 
 int main() {
+    cout<<"################# \n INICIO DE PRUEBA \n #################"<<endl;
     LibretaContactos libreta;
 
 
     Contacto contacto1;
     contacto1.set_nombre("Juan Reina");
-    contacto1.set_telf(322 870-3929);
+    contacto1.set_telf(3228703929);
     contacto1.set_direcc("Calle 123");
     contacto1.set_red("Instagram", "@juanhdgamer");
     contacto1.set_red("Correo", "juan@urosario.co");
@@ -202,7 +203,7 @@ int main() {
 
     Contacto contacto2;
     contacto2.set_nombre("Laura");
-    contacto2.set_telf(318 410-0100);
+    contacto2.set_telf(3184100100);
     contacto2.set_direcc("Avenida 456");
     contacto2.set_red("LinkedIn", "linkedin.com/in/Laura");
     contacto2.set_ico(2);
