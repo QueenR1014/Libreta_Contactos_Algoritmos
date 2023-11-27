@@ -14,10 +14,30 @@
 
 using namespace std;
 
+    void calltext(string doc)
+{
+    ifstream artFile(doc);
+    string line;
+
+    if (artFile.is_open())
+    {
+        while (getline(artFile, line))
+        {
+            cout << line << endl;
+        }
+        artFile.close();
+    }
+    else
+    {
+        cerr<< "Failed to open .txt" << endl;
+    }
+};
+
 
 int main() {
     cout<<"################# \n INICIO DE PRUEBA \n #################"<<endl;
     LibretaContactos libreta;
+    queue<string> Copias_seguridad;
 
 
     Contacto contacto1;
@@ -58,7 +78,9 @@ int main() {
     cout << "Contactos cuyos nombres comienzan con 'J':" << endl;
     libreta.MostrarContactosPorLetra('J');
 
-    libreta.RealizarCopiaSeguridad("copia_seguridad.txt");
+    libreta.RealizarCopiaSeguridad("copia_seguridad.txt", Copias_seguridad);
+    
+    calltext("texto.txt");
 
     return 0;
 }
