@@ -117,16 +117,22 @@ public:
      void RealizarCopiaSeguridad(const string& nombreArchivo, queue<string> c_s){
         ofstream archivo(nombreArchivo);                             //usando file stream, se crea la copia de seguridad como archivo .txt
         int x = 0;
+         
         for (auto& contacto : contactos) {
             archivo << contacto << endl;
             archivo << "Redes:\n" << contacto.print_map() << endl;    // donde se imprimen todos los contactos existentes
         }
-
         archivo.close();           // se cierra el archivo
 
         c_s.push(nombreArchivo);
         while(x != 1 || x != 2){
             cout<<"Desea ver las copias de seguridad? (1) para si (2) para no" << endl;
+        }
+        if(x == 1){
+            while (!archivos.empty()) {
+                cout << "Archivo: " << archivos.front() << endl; // Muestra el nombre del archivo al frente de la cola
+                archivos.pop(); // Elimina el elemento del frente de la cola
+            }
         }
          
     }
