@@ -2,7 +2,6 @@
 #include <map>
 #include <string>
 using namespace std;
-//crear un mapa para almacenar las redes del contacto
 map<string,string> crear_redes(){
     map<string, string> redes;
     redes["Instagram"] = "";
@@ -12,7 +11,6 @@ map<string,string> crear_redes(){
 
     return redes;
 }
-
 class Contacto{
     private:
 //declaracion de variables
@@ -97,7 +95,7 @@ class Contacto{
         void set_frecuencia(int r){
             recurrence = r;
         }
-        // Prints para mostrar la informacion amacenada en la clase segun la estructura
+        // Prints para mostrar la informacion almacenada en la clase segun la estructura
         string print_map(){
 
             string redes_string;
@@ -128,4 +126,4 @@ class Contacto{
             return nombre[0] > a.get_nombre()[0];
         }
     
-};  
+};
