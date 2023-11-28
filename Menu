@@ -1,3 +1,24 @@
+
+ void calltext(string doc)
+{
+    ifstream artFile(doc);
+    string line;
+
+    if (artFile.is_open())
+    {
+        while (getline(artFile, line))
+        {
+            cout << line << endl;
+        }
+        artFile.close();
+    }
+    else
+    {
+        cerr<< "Failed to open .txt" << endl;
+    }
+};
+
+
 void menu(int option, LibretaContactos& libreta){
     int option1;
     int option2;
