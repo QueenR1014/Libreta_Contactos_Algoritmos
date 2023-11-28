@@ -1,8 +1,11 @@
+#if __has_include("libreta.cpp")
+#elif
 #include "libreta.cpp"
-/*#if __has_include("contacto.cpp")
+#endif
+#if __has_include("contacto.cpp")
 #elif
 #include "contacto.cpp"
-#endif*/
+#endif
 #include "Menu.cpp"
 #include <iostream>
 
