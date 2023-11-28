@@ -1,3 +1,7 @@
+#include <queue>
+
+using namespace std;
+
 class LibretaContactos {
 private:
     vector<Contacto> contactos;

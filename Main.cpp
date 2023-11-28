@@ -1,3 +1,14 @@
+#include "libreta.cpp"
+#if __has_include("contacto.cpp")
+#elif
+#include "contacto.cpp"
+#endif
+#include "Menu.cpp"
+#include <iostream>
+
+using namespace std;
+
+
 int main() {
     calltext("nombre.txt");
     LibretaContactos libreta;

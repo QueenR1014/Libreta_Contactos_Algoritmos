@@ -1,3 +1,20 @@
+#include <string>
+#include <iostream>
+#include <map>
+
+using namespace std;
+
+//crear un mapa para almacenar las redes del contacto
+map<string,string> crear_redes(){
+    map<string, string> redes;
+    redes["Instagram"] = "";
+    redes["Correo"] = "";
+    redes["X"] = "";
+    redes["LinkedIn"] = "";
+
+    return redes;
+}
+
 class Contacto{
     private:
 //declaracion de variables

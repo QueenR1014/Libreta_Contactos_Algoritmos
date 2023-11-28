@@ -1,3 +1,9 @@
+#include <iostream>
+#include <fstream>
+#include "libreta.cpp"
+#include "contacto.cpp"
+
+using namespace std;
 
  void calltext(string doc)
 {

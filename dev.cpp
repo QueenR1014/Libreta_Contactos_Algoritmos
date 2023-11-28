@@ -6,11 +6,11 @@
 #include <string>
 
 #include "libreta.cpp"
-
+/*
 #if __has_include("contacto.cpp")
-#elif
+#elif*/
 #include "contacto.cpp"
-#endif
+//#endif
 
 using namespace std;
 
