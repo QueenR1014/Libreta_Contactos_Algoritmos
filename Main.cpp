@@ -3,7 +3,7 @@ int main() {
     LibretaContactos libreta;
 
     cout << "###################################### \n ¡Bienvenid@! ¿Qué deseas hacer hoy?" << endl;
-    cout << " (1) Ver Contactos \n (2) Editar contactos " << endl;
+    cout << " (1) Ver Contactos \n (2) Editar contactos \n (0) Salir " << endl;
 
     int option0;
     cin >> option0;
