@@ -1,12 +1,11 @@
-void menu(int option){
+void menu(int option, LibretaContactos& libreta){
     int option1;
     int option2;
-    LibretaContactos libreta;
     switch (option) {
         case 1:
             //Contactos
             calltext("contactos.txt");
-            cout << "Que contactos desea ver? " << endl << "(1) Contactos: " << endl <<"(2) Mas frecuentes: " << endl <<"(3) Buscar nombre por letra: "<< endl; 
+            cout << "Que contactos desea ver? " << endl << "(1) Contactos: " << endl <<"(2) Mas frecuentes: " << endl <<"(3) Buscar nombre por letra: "<< endl << "Contactos totales: " << libreta.MostrarCantidadContactos() << endl ;
             cin >> option1;
             switch(option1){
                 case 1:
@@ -39,9 +38,9 @@ void menu(int option){
             bool estado = false;
             int num_a = rand()%4000+4000;
             char icono = static_cast<char>(num_a);
-            
+
             calltext("editor.txt");
-            cout << "Que desea hacer? " << endl << "(1) Agregar contacto: " << endl <<"(2) Eliminar contacto: " << endl;
+            cout << "Que desea hacer? " << endl << "(1) Agregar contacto: " << endl <<"(2) Eliminar contacto: " << endl <<"(3) Volver: "<< endl;
             cin >> option2;
             switch(option2){
                 case 1:
@@ -52,7 +51,7 @@ void menu(int option){
                     cout<<"Direccion: "<<endl;
                     cin>>dire;
                     do{
-                        
+
                         cout<<"Red social: "<<endl;
                         cin>>red_s;
                         cout<<"Usuario"<<endl;
@@ -72,12 +71,15 @@ void menu(int option){
                     contactoNuevo.set_direcc(dire);
                     contactoNuevo.set_ico(icono);
                     libreta.AgregarContacto(contactoNuevo);
+                    cout << "Contacto agregado exitosamente." << endl;
                     break;
                 case 2:
                     string eliminado;
                     cout << "A quien desea eliminar? (por favor escriba el nombre tal cual como lo guardo): "<<endl;
+                    cin >> eliminado;
                     libreta.EliminarContacto(eliminado);
-                    break;    
+                    break;
+
             }
             break;
     }
