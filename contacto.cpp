@@ -20,17 +20,17 @@ class Contacto{
         int telefono;
         map<string, string> redes = crear_redes();
         string direccion;
-        int ico;
+        char ico;
         int recurrence;
     public:
-        
+
 //constructores de la clase
         Contacto(){
             //test
             recurrence = 0;
         }
-        
-        
+
+
         Contacto(string n, int t, string di, int i){
             recurrence = 0;
             nombre = nombre;
@@ -38,16 +38,16 @@ class Contacto{
             direccion = di;
             ico = i;
         }
-        
+
         Contacto(string n){
             Contacto(n,0,"",0);
             //test
         }
-        
+
         Contacto(string n , int t){
             Contacto(n,t,"",0);
         }
-        
+
         //Methods
         // set's and get's
         void set_nombre(string n){
@@ -84,7 +84,7 @@ class Contacto{
 
         void set_ico(int i){
             ico = i;
-        } 
+        }
 
         int get_ico(){
             return ico;
@@ -97,18 +97,17 @@ class Contacto{
         void set_frecuencia(int r){
             recurrence = r;
         }
-        // Prints para mostrar la informacion amacenada en la clase segun la estructura
-        string print_map(){
-
+        // Prints para mostrar la informacion almacenada en la clase segun la estructura
+        string print_map() const {
             string redes_string;
-            for(const auto& par : redes){
+            for (const auto& par : redes) {
                 redes_string += par.first + ": " + par.second + " \n";
             }
-
             return redes_string;
         }
 
-        string print(){
+
+        string print() const {
             return "Nombre: " + nombre + " Teléfono: " + to_string(telefono) +  " Dirección: " + direccion;
         }
 
@@ -119,13 +118,21 @@ class Contacto{
         friend std::ostream& operator<<(std::ostream& os, Contacto* b){
             return os << b->print();
         }
+        friend std::ostream& operator<<(std::ostream& os, const Contacto& b){
+            return os << b.print();
+        }
 
-        bool operator<(Contacto a){
+        friend std::ostream& operator<<(std::ostream& os, const Contacto* b){
+            return os << b->print();
+        }
+
+
+    bool operator<(Contacto a){
             return nombre[0] < a.get_nombre()[0];
         }
 
         bool operator>(Contacto a){
             return nombre[0] > a.get_nombre()[0];
         }
-    
-};  
+
+};
