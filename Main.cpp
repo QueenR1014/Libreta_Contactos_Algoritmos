@@ -11,7 +11,7 @@ int main() {
 
     while (option0 != 0) {
         cout << "###################################### \n ¿Qué deseas hacer ahora? (0 para salir): " << endl;
-        cout << "(1) Ver Contactos " << endl << "(2) Editar contactos " << endl;
+        cout << "(1) Ver Contactos " << endl << "(2) Editar contactos " << endl << "(3) Copia de seguridad " << endl;
 
         cin >> option0;
         menu(option0, libreta); // Se pasa la instancia de libreta a la función menu
