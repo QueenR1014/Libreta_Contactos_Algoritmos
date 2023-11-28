@@ -1,24 +1,45 @@
 void menu(int option, LibretaContactos& libreta){
+    //varibales para el menu
     int option1;
     int option2;
+    string nombre_b;
+    string nombre_c;
+    queue<string> copias_de_seguridad;
+    Contacto contactoNuevo;
+    string nom;
+    int num;
+    string dire;
+    string red_s;
+    string nred;
+    int Q;
+    bool estado = false;
+    int num_a = rand()%4000+4000;
+    char icono = static_cast<char>(num_a);
+    //Prime switch para editar o ver contactos
     switch (option) {
         case 1:
             //Contactos
             calltext("contactos.txt");
-            cout << "Que contactos desea ver? " << endl << "(1) Contactos: " << endl <<"(2) Mas frecuentes: " << endl <<"(3) Buscar nombre por letra: "<< endl << "Contactos totales: " << libreta.MostrarCantidadContactos() << endl ;
+            cout << "Que contactos desea ver? " << endl << "(1) Contactos: " << endl <<"(2) Mas frecuentes: " << endl <<"(3) Buscar nombre por letra: "<<endl<<"(4) Buscar por nombre: " <<endl << "Contactos totales: " << libreta.MostrarCantidadContactos() << endl ;
             cin >> option1;
+            //segundo switch en casos de visualizacion
             switch(option1){
-                case 1:
+                case 1://imprimir todos los contactos
                     libreta.MostrarContactos();
                     break;
-                case 2:
+                case 2://imprimir por frecuencia
                     libreta.RevisarFrecuencia();
                     break;
-                case 3:
+                case 3://imprimir por letra
                     char letra;
                     cout<< "ingresa la letra por buscar: "<< endl;
                     cin >> letra;
                     libreta.MostrarContactosPorLetra(letra);
+                    break;
+                case 4://imprimir por nombre
+                    cout << "A quien buscas? "<<endl;
+                    cin >> nombre_b;
+                    libreta.BuscarContacto(nombre_b);
                     break;
                 default:
                     cout << "Opción inválida." << endl;
@@ -27,23 +48,12 @@ void menu(int option, LibretaContactos& libreta){
             break;
         case 2:
             //Editor
-            // EN CASO DE AGREGAR CONTACTO
-            Contacto contactoNuevo;
-            string nom;
-            int num;
-            string dire;
-            string red_s;
-            string nred;
-            int Q;
-            bool estado = false;
-            int num_a = rand()%4000+4000;
-            char icono = static_cast<char>(num_a);
-
             calltext("editor.txt");
             cout << "Que desea hacer? " << endl << "(1) Agregar contacto: " << endl <<"(2) Eliminar contacto: " << endl <<"(3) Volver: "<< endl;
             cin >> option2;
+            //tercer switch en caso de edicion
             switch(option2){
-                case 1:
+                case 1://agregar contacto
                     cout<<"Nombre: "<< endl;
                     cin>>nom;
                     cout<<"Numero: "<<endl;
@@ -73,7 +83,7 @@ void menu(int option, LibretaContactos& libreta){
                     libreta.AgregarContacto(contactoNuevo);
                     cout << "Contacto agregado exitosamente." << endl;
                     break;
-                case 2:
+                case 2://eliminar contacto
                     string eliminado;
                     cout << "A quien desea eliminar? (por favor escriba el nombre tal cual como lo guardo): "<<endl;
                     cin >> eliminado;
@@ -82,5 +92,9 @@ void menu(int option, LibretaContactos& libreta){
 
             }
             break;
+        case 3://crear copia
+            cout<<"Como desea llamar la copia? "<<endl;
+            cin>>nombre_c;
+            libreta.RealizarCopiaSeguridad(nombre_c,copias_de_seguridad);    
     }
 }
