@@ -1,7 +1,16 @@
+#include "contacto.cpp"
+#include <iostream>
+#include <vector>
+#include <iostream>
+#include <map>
 #include <queue>
-
+//métodos de búsqueda y ordenamiento
+#include <algorithm>
+//método de creación de ficheros en un programa
+#include <fstream>
+//Manejo de strings
+#include <cctype>
 using namespace std;
-
 class LibretaContactos {
 private:
     vector<Contacto> contactos;
