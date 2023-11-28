@@ -5,8 +5,8 @@
 
 using namespace std;
 
- void calltext(string doc)
-{
+void calltext(string doc){
+    
     ifstream artFile(doc);
     string line;
 
