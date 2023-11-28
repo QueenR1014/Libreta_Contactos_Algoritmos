@@ -5,11 +5,10 @@ private:
 public:
     void AgregarContacto(const Contacto& nuevoContacto) {
         contactos.push_back(nuevoContacto);
-        cout << "Tamaño del vector después de agregar: " << contactos.size() << endl;
 
-        //sort(contactos.begin(), contactos.end(), []( Contacto& a,  Contacto& b) { //Al añadir un contacto, automáticamente se ordena alfabéticamente
-            //return a < b;
-        //});
+        sort(contactos.begin(), contactos.end(), []( Contacto& a,  Contacto& b) { //Al añadir un contacto, automáticamente se ordena alfabéticamente
+            return a < b;
+        });
     }
 
 
@@ -65,30 +64,49 @@ public:
     }
 
 
-    void RealizarCopiaSeguridad(const string& nombreArchivo, queue<string>& c_s) {
+   void RealizarCopiaSeguridad(const std::string& nombreArchivo) {
     ofstream archivo(nombreArchivo); // Crear archivo de copia de seguridad
+    bool est = false;
+    int op;
 
-    // Escribir los contactos en el archivo
-    for (auto& contacto : contactos) {
-        archivo << contacto << endl;
-        archivo << "Redes:\n" << contacto.print_map() << endl;
-    }
-    archivo.close(); // Cerrar el archivo
-
-    c_s.push(nombreArchivo); // Agregar el nombre del archivo a la cola
-
-    int x = 0;
-    cout << "Desea ver las copias de seguridad? (1) para sí, (2) para no: ";
-    cin >> x;
-    if (x == 1) {
-        queue<string> temp = c_s; // Crear una copia temporal de la cola para no alterar la original
-        while (!temp.empty()) {
-            cout << "Archivo: " << temp.front() << endl;
-            temp.pop();
+    // Verificar si se pudo abrir el archivo correctamente
+    if (archivo.is_open()) {
+        // Escribir los contactos en el archivo
+        for (auto& contacto : contactos) {
+            archivo << contacto << endl;
+            archivo << "Redes:\n" << contacto.print_map() << endl;
         }
+        archivo.close(); // Cerrar el archivo después de escribir
+
+        ifstream archivoLectura(nombreArchivo); // Abrir el archivo para lectura
+
+        if (archivoLectura.is_open()) {
+            queue<string> c_s;
+
+            string linea;
+            while (getline(archivoLectura, linea)) {
+                c_s.push(linea); // Agregamos cada línea del archivo a la cola
+            }
+            archivoLectura.close(); // Cerrar el archivo después de leer
+            cout<<"Quieres ver la copias de seguridad?: (1) para si  (2) para no "<<endl;
+            cin >> op;
+            if(op == 1){
+                est = true;
+            }else{
+                est = false;
+            }
+            
+            while (!c_s.empty() && est == true) {
+                cout << c_s.front() << '\n';
+                c_s.pop();
+            }
+        } else {
+            cout << "No se pudo abrir el archivo para lectura\n";
+        }
+    } else {
+        cout << "No se pudo crear el archivo de copia de seguridad\n";
     }
 }
-
 
 
     void OrdenarContactos(){
