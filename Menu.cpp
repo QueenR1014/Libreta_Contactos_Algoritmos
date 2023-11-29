@@ -46,7 +46,7 @@ void menu(int option, LibretaContactos& libreta){
         case 1:
             //Contactos
             calltext("contactos.txt");
-            cout << "Que contactos desea ver? " << endl << "(1) Todos los contactos: " << endl <<"(2) Mas frecuentes: " << endl <<"(3) Buscar nombre por letra: "<<endl<<"(4) Buscar por nombre: " <<endl << "Contactos totales: " << libreta.MostrarCantidadContactos() << endl ;
+            cout << "Que contactos desea ver? " << endl << "(1) Todos los contactos: " << endl <<"(2) Más frecuentes: " << endl <<"(3) Buscar nombre por letra: "<<endl<<"(4) Buscar por nombre: " <<endl << "Contactos totales: " << libreta.MostrarCantidadContactos() << endl ;
             cin >> option1;
             switch(option1){
                 case 1:
@@ -57,7 +57,7 @@ void menu(int option, LibretaContactos& libreta){
                     break;
                 case 3:
                     char letra;
-                    cout<< "ingresa la letra por buscar: "<< endl;
+                    cout<< "Ingresa la letra por buscar: "<< endl;
                     cin >> letra;
                     libreta.MostrarContactosPorLetra(letra);
                     break;
@@ -82,7 +82,7 @@ void menu(int option, LibretaContactos& libreta){
                     cin>>nom;
                     cout<<"Numero: "<<endl;
                     cin>>num;
-                    cout<<"deseas agregar una dierrecion? (1) si (2) no"<<endl;
+                    cout<<"Deseas agregar una dirección? (1) si (2) no"<<endl;
                     cin >> op;
                     if(op==1){
                         esta = true;
@@ -95,7 +95,7 @@ void menu(int option, LibretaContactos& libreta){
                         cout<<"Direccion: "<<endl;
                         cin>>dire;                        
                     }
-                    cout<<"desea agregar una red social: (1) si (2) no"<<endl;
+                    cout<<"Desea agregar una red social? (1) si (2) no"<<endl;
                     cin>>Q;
                     if(Q == 1){
                         estado = true;
@@ -108,7 +108,7 @@ void menu(int option, LibretaContactos& libreta){
                     cout<<"Usuario"<<endl;
                     cin>>nred;
                     contactoNuevo.set_red(red_s, nred);
-                    cout<<"desea agregar otra red social: (1) si (2) no"<<endl;
+                    cout<<"Desea agregar otra red social? (1) si (2) no"<<endl;
                     cin>>Q;
                     if(Q == 1){
                         estado = true;
@@ -126,7 +126,7 @@ void menu(int option, LibretaContactos& libreta){
                     break;
                 case 2:
                     string eliminado;
-                    cout << "A quien desea eliminar? (por favor escriba el nombre tal cual como lo guardo): "<<endl;
+                    cout << "A quién desea eliminar? (Por favor escriba el nombre tal cual como ha sido guardado): "<<endl;
                     cin >> eliminado;
                     libreta.EliminarContacto(eliminado);
                     break;
@@ -134,7 +134,7 @@ void menu(int option, LibretaContactos& libreta){
             }
             break;
         case 3:
-            cout<<"Como desea llamar la copia? "<<endl;
+            cout<<"Como desea llamar a la copia? "<<endl;
             cin>>nombre_c;
             libreta.RealizarCopiaSeguridad(nombre_c);    
     }
