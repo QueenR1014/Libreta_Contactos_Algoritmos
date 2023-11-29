@@ -1,7 +1,8 @@
 #include <iostream>
 #include <map>
 #include <string>
-
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 //crear un mapa para almacenar las redes del contacto
@@ -19,7 +20,7 @@ class Contacto{
     private:
 //declaracion de variables
         string nombre;
-        int telefono;
+        unsigned int telefono;
         map<string, string> redes = crear_redes();
         string direccion;
         char ico;
@@ -27,27 +28,33 @@ class Contacto{
     public:
 
 //constructores de la clase
+
         Contacto(){
             //test
             recurrence = 0;
         }
 
 
-        Contacto(string n, int t, string di, int i){
+        Contacto(string n, int t, string di){
+            static bool seeded = false;
+            if (!seeded) {
+                std::srand(static_cast<unsigned int>(std::time(nullptr))); // Seed the random number generator
+                seeded = true;
+            }
             recurrence = 0;
             nombre = nombre;
             telefono = t;
             direccion = di;
-            ico = i;
+            ico = rand()%17;
         }
 
         Contacto(string n){
-            Contacto(n,0,"",0);
+            Contacto(n,0,"");
             //test
         }
 
         Contacto(string n , int t){
-            Contacto(n,t,"",0);
+            Contacto(n,t,"");
         }
 
         //Methods
@@ -99,6 +106,7 @@ class Contacto{
         void set_frecuencia(int r){
             recurrence = r;
         }
+
         // Prints para mostrar la informacion almacenada en la clase segun la estructura
         string print_map() const {
             string redes_string;
@@ -110,7 +118,7 @@ class Contacto{
 
 
         string print() const {
-            return "Nombre: " + nombre + " Teléfono: " + to_string(telefono) +  " Dirección: " + direccion;
+            return string(1, ico) + " Nombre: " + nombre + " Teléfono: " + to_string(telefono) +  " Dirección: " + direccion;
         }
 
         friend std::ostream& operator<<(std::ostream& os, Contacto& b){
