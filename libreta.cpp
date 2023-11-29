@@ -69,7 +69,7 @@ public:
 
     void MostrarContactosPorLetra(char letra) {
         for (auto& contacto : contactos) {
-            if (tolower(contacto.get_nombre()[0]) == tolower(letra)) {  // dentro de contactos, se tomas todos los contactos cuya primera letra (convertida a
+            if (tolower(contacto.get_nombre()[0]) == tolower(letra)) {  // dentro de contactos, se toman todos los contactos cuya primera letra (convertida a
                 cout << contacto << endl;                               // minúscula) sean igual a la letra dada y se imprimen.
                 cout << "Redes:\n" << contacto.print_map() << endl;
             }
