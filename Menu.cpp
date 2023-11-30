@@ -5,6 +5,15 @@
 
 using namespace std;
 
+bool validate_input(int input,int min , int max){
+    if(input < min && input > max){
+        //cout<<"Ingreso inválido. Intenta de nuevo."<<endl;
+        return false;
+    }else{
+        return true;
+    }
+}
+
 void calltext(string doc){
     
     ifstream artFile(doc);
@@ -39,15 +48,19 @@ void menu(int option, LibretaContactos& libreta){
     int Q;
     bool estado = false;
     int num_a = rand()%4000+4000;
-    char icono = static_cast<char>(num_a);
+    //char icono = static_cast<char>(num_a);
     int op;
     bool esta;
     switch (option) {
         case 1:
             //Contactos
+            contactos_cp:
             calltext("contactos.txt");
             cout << "Que contactos desea ver? " << endl << "(1) Todos los contactos: " << endl <<"(2) Más frecuentes: " << endl <<"(3) Buscar nombre por letra: "<<endl<<"(4) Buscar por nombre: " <<endl << "Contactos totales: " << libreta.MostrarCantidadContactos() << endl ;
             cin >> option1;
+            if(!validate_input(option1,1,4)){
+                goto contactos_cp;
+            }
             switch(option1){
                 case 1:
                     libreta.MostrarContactos();
@@ -73,56 +86,69 @@ void menu(int option, LibretaContactos& libreta){
             break;
         case 2:
             //Editor
+            editor_cp:
             calltext("editor.txt");
             cout << "Que desea hacer? " << endl << "(1) Agregar contacto: " << endl <<"(2) Eliminar contacto: " << endl <<"(3) Volver: "<< endl;
             cin >> option2;
+            if(!validate_input(option2,1,3)){
+                goto editor_cp;
+            }
             switch(option2){
                 case 1:
                     cout<<"Nombre: "<< endl;
                     cin>>nom;
                     cout<<"Numero: "<<endl;
                     cin>>num;
+                    direccion:
                     cout<<"Deseas agregar una dirección? (1) si (2) no"<<endl;
                     cin >> op;
-                    if(op==1){
-                        esta = true;
-                        
+                    if(!validate_input(op,1,2)){
+                        goto direccion;
                     }
-                    else{
-                        esta = false;
-                    }
-                    while(esta == true){
+                    if(op==1){ 
                         cout<<"Direccion: "<<endl;
-                        cin>>dire;                        
+                        cin.ignore();
+                        getline(cin, dire);                         
                     }
+                    
+                    redes2:
                     cout<<"Desea agregar una red social? (1) si (2) no"<<endl;
                     cin>>Q;
+                    if(!validate_input(Q,1,2)){
+                        goto redes2;
+                    }
                     if(Q == 1){
                         estado = true;
                     }else{
                         estado = false;
                     }
                     while (estado){
-                    cout<<"Red social: "<<endl;
-                    cin>>red_s;
-                    cout<<"Usuario"<<endl;
-                    cin>>nred;
-                    contactoNuevo.set_red(red_s, nred);
-                    cout<<"Desea agregar otra red social? (1) si (2) no"<<endl;
-                    cin>>Q;
-                    if(Q == 1){
-                        estado = true;
-                    }else{
-                        estado = false;
-                    }
+                        cout<<"Red social: "<<endl;
+                        cin>>red_s;
+                        cout<<"Usuario"<<endl;
+                        cin>>nred;
+                        contactoNuevo.set_red(red_s, nred);
+                        redes:
+                        cout<<"Desea agregar una red social? (1) si (2) no"<<endl;
+                        cin>>Q;
+                        if(!validate_input(Q,1,2)){
+                            goto redes;
+                        }
+                        if(Q == 1){
+                            estado = true;
+                        }else{
+                            estado = false;
+                        }
                 }; 
 
                     contactoNuevo.set_nombre(nom);
                     contactoNuevo.set_telf(num);
                     contactoNuevo.set_direcc(dire);
-                    contactoNuevo.set_ico(icono);
+                    //contactoNuevo.set_ico(icono);
                     libreta.AgregarContacto(contactoNuevo);
-                    cout << "Contacto agregado exitosamente." << endl;
+                    
+                    
+                    
                     break;
                 case 2:
                     string eliminado;

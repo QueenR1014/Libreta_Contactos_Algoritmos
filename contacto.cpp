@@ -3,6 +3,7 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <vector>
 using namespace std;
 
 //crear un mapa para almacenar las redes del contacto
@@ -16,6 +17,23 @@ map<string,string> crear_redes(){
     return redes;
 }
 
+vector<std::string> icons(){
+    //len = 12
+    vector<std::string> holder;
+    holder.push_back("☻");
+    holder.push_back("☺");
+    holder.push_back("♥");
+    holder.push_back("♦");
+    holder.push_back("♣");
+    holder.push_back("♠");
+    holder.push_back("◘");
+    holder.push_back("◙");
+    holder.push_back("♂");
+    holder.push_back("♀");
+    return holder;
+
+}
+
 class Contacto{
     private:
 //declaracion de variables
@@ -23,7 +41,7 @@ class Contacto{
         unsigned int telefono;
         map<string, string> redes = crear_redes();
         string direccion;
-        char ico;
+        string ico;
         int recurrence;
     public:
 
@@ -36,6 +54,7 @@ class Contacto{
 
 
         Contacto(string n, int t, string di){
+            
             static bool seeded = false;
             if (!seeded) {
                 std::srand(static_cast<unsigned int>(std::time(nullptr))); // Seed the random number generator
@@ -45,7 +64,7 @@ class Contacto{
             nombre = nombre;
             telefono = t;
             direccion = di;
-            ico = rand()%17;
+            ico = icons()[rand()%12];
         }
 
         Contacto(string n){
@@ -63,7 +82,7 @@ class Contacto{
             nombre = n;
         }
 
-        string get_nombre(){
+        string get_nombre() const{
             return nombre;
         }
 
@@ -71,7 +90,7 @@ class Contacto{
             telefono  = t;
         }
 
-        int get_telf(){
+        int get_telf() const{
             return telefono;
         }
 
@@ -79,7 +98,7 @@ class Contacto{
             redes[red] = info;
         }
 
-        string get_red(string red){
+        string get_red(string red) {
             return redes[red];
         }
 
@@ -87,15 +106,11 @@ class Contacto{
             direccion = d;
         }
 
-        string get_direcc(){
+        string get_direcc() const{
             return direccion;
         }
 
-        void set_ico(int i){
-            ico = i;
-        }
-
-        int get_ico(){
+        string get_ico() const{
             return ico;
         }
 
@@ -118,7 +133,7 @@ class Contacto{
 
 
         string print() const {
-            return string(1, ico) + " Nombre: " + nombre + " Teléfono: " + to_string(telefono) +  " Dirección: " + direccion;
+            return ico + " Nombre: " + nombre + " Teléfono: " + to_string(telefono) +  " Dirección: " + direccion;
         }
 
         friend std::ostream& operator<<(std::ostream& os, Contacto& b){
@@ -141,8 +156,8 @@ class Contacto{
             return nombre[0] < a.get_nombre()[0];
         }
 
-        bool operator>(Contacto a){
-            return nombre[0] > a.get_nombre()[0];
-        }
+    bool operator>(Contacto a){
+        return nombre[0] > a.get_nombre()[0];
+    }
 
 };

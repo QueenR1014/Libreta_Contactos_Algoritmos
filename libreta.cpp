@@ -16,13 +16,6 @@ private:
     vector<Contacto> contactos;
 
 public:
-    void AgregarContacto(const Contacto& nuevoContacto) {
-        contactos.push_back(nuevoContacto);
-
-        sort(contactos.begin(), contactos.end(), []( Contacto& a,  Contacto& b) { //Al añadir un contacto, automáticamente se ordena alfabéticamente
-            return a < b;
-        });
-    }
 
 
 
@@ -36,21 +29,44 @@ public:
 
 
 
-    void BuscarContacto(const string& nombre) {
+    bool BuscarContacto(const string& nombre, bool check = false) {
         auto it = find_if(contactos.begin(), contactos.end(),
                           [nombre](Contacto& contacto) { return contacto.get_nombre() == nombre; });
 
         /* Función find if, de la misma manera que el remove, desde el rango begin hasta en, va sacando los nombre de cada contacto y los iguala al
         nombre dado */
-
+        //parámetro check para uso dentro de las funciones
         if (it != contactos.end()) {
+            if(check){
+                return true;
+            }else{
             cout << *it << endl;
             cout << "Redes:\n" << it->print_map() << endl;  // si lo encuentra, se imprimen sus redes
+            }
         } else {
+            if(check){
+                return false;
+            }else{
             cout << "Contacto no encontrado." << endl; // caso en el que no
+            }
         }
     }
 
+    void AgregarContacto(const Contacto& nuevoContacto) {
+        //revisión de dobles
+        bool doubled = BuscarContacto(nuevoContacto.get_nombre(), true);
+        if(doubled){
+            cout<<"¡Advertencia!"<<endl;
+            cout<<"El contacto que tratas de agregar ya existe."<<endl;
+        }else{
+            contactos.push_back(nuevoContacto);
+
+            sort(contactos.begin(), contactos.end(), []( Contacto& a,  Contacto& b) { //Al añadir un contacto, automáticamente se ordena alfabéticamente
+                return a < b;
+            });
+            cout << "Contacto agregado exitosamente." << endl;
+        }
+    }
     void MostrarContactos() const {
         for (const Contacto& c : contactos) { // Utilizar una referencia constante para evitar problemas de tipos
             cout << c << endl;
